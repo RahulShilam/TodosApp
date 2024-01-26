@@ -1,0 +1,101 @@
+.todos-app {
+  // background-color: #9f79ee;
+  background-color: cadetblue;
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+  .main-body {
+    padding: 1px;
+    .main-container-body {
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      /* align-items: center; */
+      margin: 12% 40%;
+      padding: 2%;
+      border-radius: 5px;
+      /* border: 1px solid black; */
+      background: white;
+      width: 300px;
+      .popup-title {
+        font-size: 30px;
+        font-weight: bold;
+      }
+      .popup-main-elements {
+        padding-top: 5%;
+        .popup-elements {
+          display: flex;
+          // background: lightgrey;
+          .plus-icon {
+            width: 15%;
+            text-align: center;
+            // margin-top: 7px;
+            background: #8fdb46;
+            padding: 5px 0 5px 0;
+            color: white;
+            cursor: pointer;
+          }
+          .add-task-btn {
+            border: unset;
+            background: unset;
+            cursor: pointer;
+          }
+          .text-box-elems {
+            width: 85%;
+            // background: white;
+          }
+        }
+        .task-items {
+          display: flex;
+          //            background: "lightgray";
+          // padding: 5px;
+          margin-top: 5px;
+          background: #e3e3e3;
+          .item-align {
+            width: 85%;
+            font-family: auto;
+            position: relative;
+            left: 15px;
+            top: 5px;
+          }
+          .del-icon {
+            visibility: hidden;
+          }
+        }
+
+        .task-items:hover {
+          background: lightgray;
+          .del-icon {
+            visibility: visible;
+            background: #f34141;
+            cursor: pointer;
+            width: 15%;
+            text-align: center;
+            color: white;
+            .del-task-btn {
+              border: unset;
+              background: unset;
+              cursor: pointer;
+            }
+          }
+        }
+
+        .popup-footer {
+          display: flex;
+          padding: 3% 0 0 0;
+          width: 100%;
+          font-size: 14px;
+          font-family: auto;
+          .popup-text {
+            // position: relative;
+            // left: 5px;
+            width: 60%;
+          }
+          .popup-btn-clear {
+            width: 40%;
+          }
+        }
+      }
+    }
+  }
+}
