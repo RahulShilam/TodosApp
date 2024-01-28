@@ -1,50 +1,33 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "./TodosApp.scss";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import { Button, TextField } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
+import { connect } from "react-redux";
+import { addAllTasks } from "../Actions/Actions";
 
-const TodosApp = () => {
+const TodosApp = ({ data, addAllTasks }) => {
   const [taskValue, setTaskValue] = useState("");
-  const [todotask, setTodoTask] = useState([]);
 
   const handleChange = (e) => {
-    // console.log(e.target.value);
+    console.log(e.target.value);
     setTaskValue(e.target.value);
   };
 
-  useEffect(() => {
-    setTaskValue("");
-    console.table("aray", todotask);
-  }, [todotask]);
-
   const deleteSingleTask = (currentIndex) => {
-    console.log("index and value", currentIndex, todotask[currentIndex]);
-    let formmatedArray = [...todotask];
+    let formmatedArray = [...data];
     formmatedArray.splice(currentIndex, 1);
-    setTodoTask(formmatedArray);
+    // setTodoTask(formmatedArray);
+    addAllTasks(formmatedArray);
   };
 
   const addTasks = (e) => {
     let x = [taskValue];
-
-    setTodoTask([...todotask, ...x]);
-    console.table("add method", taskValue);
+    // setTodoTask([...todotask, ...x]);
+    // addAllTasks([...todotask, ...x]);
+    addAllTasks([...data, ...x]);
+    setTaskValue("");
   };
-  // const tasks = [
-  //   {
-  //     taskname: "Eat Your Food",
-  //   },
-  //   {
-  //     taskname: "Read 5 Pages",
-  //   },
-  //   {
-  //     taskname: "Workout 90mins",
-  //   },
-  //   {
-  //     taskname: "What did you fail today?",
-  //   },
-  // ];
   return (
     <div className="todos-app">
       <div className="main-body">
@@ -62,12 +45,6 @@ const TodosApp = () => {
                     value={taskValue}
                     onChange={handleChange}
                   />
-                  {/* <input
-                    style={{ width: "95%" }}
-                    type="text"
-                    name="todos"
-                    value="Add your New Todo"
-                  ></input> */}
                 </div>
                 <div className="plus-icon">
                   <button className="add-task-btn" onClick={addTasks}>
@@ -76,7 +53,7 @@ const TodosApp = () => {
                 </div>
               </div>
               <div style={{ marginTop: "10px" }}>
-                {todotask.map((task, index) => (
+                {data.map((task, index) => (
                   <div className="task-items">
                     <span className="item-align"> {task}</span>
                     <div className="del-icon">
@@ -89,23 +66,17 @@ const TodosApp = () => {
                     </div>
                   </div>
                 ))}
-                {/* {tasks.map((task) => (
-                  <div className="task-items">
-                    <span className="item-align"> {task.taskname}</span>
-                    <div className="del-icon">
-                      <DeleteIcon />
-                    </div>
-                  </div>
-                ))} */}
               </div>
               <div className="popup-footer">
                 <div className="popup-text">
-                  You have {todotask.length} pending tasks
+                  You have {data.length} pending tasks
                 </div>
                 <div className="popup-btn-clear">
                   <Button
                     onClick={() => {
-                      setTodoTask([]);
+                      addAllTasks([]);
+                      // setTodoTask([]);
+                      //deleteAllTasks([]);
                     }}
                     size="small"
                     variant="contained"
@@ -122,4 +93,14 @@ const TodosApp = () => {
   );
 };
 
-export default TodosApp;
+// Map Redux state to component props
+const mapStateToProps = (state) => ({
+  data: state.data,
+});
+
+// Map Redux actions to component props
+const mapDispatchToProps = {
+  addAllTasks,
+  // deleteAllTasks,
+};
+export default connect(mapStateToProps, mapDispatchToProps)(TodosApp);
