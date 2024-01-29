@@ -1,11 +1,13 @@
 // import logo from "./logo.svg";
 import "./App.css";
-import TodosApp from "./containers/TodosApp";
+// import TodosApp from "./containers/TodosApp";
+import TodosAppReduxToolkit from "./containers/TodosAppReduxToolkit";
 
 function App() {
   return (
     <div className="">
-      <TodosApp />
+      {/* <TodosApp /> */}
+      <TodosAppReduxToolkit />
     </div>
   );
 }
